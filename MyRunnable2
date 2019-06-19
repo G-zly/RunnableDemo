@@ -1,0 +1,29 @@
+package com;  
+  
+  
+/* 
+ * 同步 
+ * 这里有两种方式加锁 
+ * 分别是 
+ * 1.synchronized 
+ * 2.lock()和unlock() 
+ */  
+public class MyRunnable2 implements Runnable {  
+    private int tickets = 100;  
+  
+    public void run() {  
+        while (true) {  
+            synchronized (this) {  
+                if (tickets > 0) {  
+                    try {  
+                        Thread.sleep(100);  
+                    } catch (InterruptedException e) {  
+                        // TODO Auto-generated catch block  
+                        e.printStackTrace();  
+                    }  
+                    System.out.println(Thread.currentThread().getName() + "售出了第" + (tickets--) + "张票");  
+                }  
+            }  
+        }  
+    }  
+}
